@@ -1,0 +1,231 @@
+
+.zanah-hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: calc(100svh - var(--nav-height, 82px));
+  min-height: 560px;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--paper, #f5f1e9);
+  color: var(--ink, #292821);
+
+  &__content {
+    position: relative;
+    z-index: 3;
+    width: 52%;
+    padding: 0 0 20px var(--page-gutter, 6.5%);
+  }
+
+  &__title {
+    margin: 0;
+    font-size: clamp(60px, 7.2vw, 108px);
+    font-weight: 400;
+    letter-spacing: -0.075em;
+    line-height: 0.96;
+  }
+
+  &__line {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 0.1em;
+    margin-bottom: -0.1em;
+  }
+
+  &__line-inner {
+    display: block;
+  }
+
+  &__title em {
+    font-family: var(--font-display, "Playfair Display", Georgia, serif);
+    font-weight: 400;
+    letter-spacing: -0.06em;
+  }
+
+  &__description {
+    max-width: 360px;
+    margin: 32px 0 30px;
+    color: var(--muted, #77736c);
+    font-size: 14px;
+    line-height: 1.9;
+  }
+
+  &__actions {
+    display: flex;
+  }
+
+  &__button {
+    position: relative;
+    display: inline-block;
+    padding: 14px 0;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+
+    &::after {
+      position: absolute;
+      right: 0;
+      bottom: 8px;
+      left: 0;
+      height: 1px;
+      background: var(--ink, #292821);
+      content: "";
+      transform-origin: right;
+      transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+    }
+
+    &:hover::after {
+      transform: scaleX(0.35);
+    }
+
+    &:focus-visible {
+      outline: 1px solid var(--ink, #292821);
+    }
+  }
+
+  /*
+   * The frame fills the hero and is clipped to an arch (clip-path),
+   * so scrolling never triggers layout work.
+   * The values below are the SETTLED layout: they are the fallback for
+   * reduced motion, and must match LAYOUTS.settle in Hero.jsx.
+   */
+  &__frame {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    clip-path: inset(4% 4% 5% 55% round 400px 400px 0px 0px);
+    pointer-events: none;
+  }
+
+  &__photo {
+    position: absolute;
+    top: 4%;
+    right: 4%;
+    bottom: 5%;
+    left: 55%;
+    overflow: hidden;
+    background: #e8e3da;
+    transform-origin: center;
+  }
+
+  &__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+  }
+
+  // Thin line that hints at scrolling (no text).
+  &__cue {
+    position: absolute;
+    z-index: 3;
+    bottom: 24px;
+    left: calc(50% - 0.5px);
+    width: 1px;
+    height: 44px;
+    overflow: hidden;
+    background: rgba(41, 40, 33, 0.15);
+
+    &::after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 50%;
+      background: var(--ink, #292821);
+      content: "";
+      animation: zanah-scroll-cue 2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+    }
+  }
+}
+
+@keyframes zanah-scroll-cue {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(200%);
+  }
+}
+
+@media (max-width: 900px) {
+  .zanah-hero {
+    &__content {
+      width: 56%;
+      padding-left: 5%;
+    }
+
+    &__title {
+      font-size: clamp(44px, 7.2vw, 80px);
+    }
+
+    &__frame {
+      clip-path: inset(4% 3% 5% 58% round 400px 400px 0px 0px);
+    }
+
+    &__photo {
+      right: 3%;
+      left: 58%;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .zanah-hero {
+    display: block;
+    min-height: 540px;
+
+    &__content {
+      width: 100%;
+      padding: 32px 6% 0;
+    }
+
+    &__title {
+      font-size: clamp(44px, 11.5vw, 64px);
+      line-height: 0.98;
+    }
+
+    &__description {
+      margin: 16px 0 8px;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    &__button {
+      padding: 10px 0;
+    }
+
+    &__frame {
+      clip-path: inset(48% 14% 4% 14% round 400px 400px 0px 0px);
+    }
+
+    &__photo {
+      top: 48%;
+      right: 14%;
+      bottom: 4%;
+      left: 14%;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zanah-hero__button::after {
+    transition: none;
+  }
+
+  .zanah-hero__cue::after {
+    animation: none;
+  }
+}
+
+// Phones held sideways: no pinned story, just a calm two-column layout.
+@media (max-height: 520px) and (orientation: landscape) {
+  .zanah-hero {
+    height: auto;
+    min-height: 520px;
+
+    &__cue {
+      display: none;
+    }
+  }
+}

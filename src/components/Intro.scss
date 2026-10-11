@@ -1,0 +1,119 @@
+
+.zanah-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #171614;
+  color: #f4f0e8;
+  isolation: isolate;
+}
+
+.zanah-intro__center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 24px;
+  text-align: center;
+}
+
+.zanah-intro__eyebrow,
+.zanah-intro__caption,
+.zanah-intro__index,
+.zanah-intro__corner {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+}
+
+.zanah-intro__eyebrow {
+  margin-bottom: 30px;
+  color: #b9ad9b;
+}
+
+.zanah-intro__wordmark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(3px, 1.1vw, 12px);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(54px, 12vw, 140px);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.08em;
+}
+
+.zanah-intro__letter {
+  display: inline-block;
+  will-change: transform, opacity, filter;
+}
+
+.zanah-intro__line {
+  width: clamp(50px, 8vw, 90px);
+  height: 1px;
+  margin-top: 30px;
+  background: #a89578;
+  transform-origin: center;
+}
+
+.zanah-intro__caption {
+  margin-top: 17px;
+  color: #c9c0b3;
+  font-size: 8px;
+  letter-spacing: 0.28em;
+}
+
+.zanah-intro__index,
+.zanah-intro__corner {
+  position: absolute;
+  bottom: 26px;
+  color: #938a7d;
+  font-size: 8px;
+  letter-spacing: 0.16em;
+}
+
+.zanah-intro__index {
+  left: 24px;
+}
+
+.zanah-intro__corner {
+  right: 24px;
+}
+
+@media (max-width: 600px) {
+  .zanah-intro__eyebrow {
+    max-width: 260px;
+    margin-bottom: 25px;
+    font-size: 8px;
+    line-height: 1.8;
+  }
+
+  .zanah-intro__wordmark {
+    font-size: clamp(48px, 13vw, 76px);
+    gap: 2px;
+  }
+
+  .zanah-intro__line {
+    margin-top: 25px;
+  }
+
+  .zanah-intro__index {
+    left: 16px;
+  }
+
+  .zanah-intro__corner {
+    right: 16px;
+  }
+
+  .zanah-intro__index,
+  .zanah-intro__corner {
+    bottom: 20px;
+    font-size: 7px;
+  }
+}
