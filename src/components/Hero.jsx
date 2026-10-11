@@ -11,7 +11,7 @@ gsap.registerPlugin(ScrollTrigger);
 ScrollTrigger.config({ ignoreMobileResize: true });
 
 // Replace with your own brand photo: a base path like "/images/hero" (see scripts/optimize-images.mjs).
-const MAIN_IMAGE = "/originals/hero.jpg";
+const MAIN_IMAGE = "/images/hero";;
 
 /**
  * Photo box rectangles, in % of the hero.
